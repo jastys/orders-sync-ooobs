@@ -1,0 +1,7 @@
+{
+  "name": "orders-sync",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": { "test": "node --test", "sync": "node scripts/sync.js" },
+  "engines": { "node": ">=18" }
+}
