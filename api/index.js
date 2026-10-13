@@ -14,7 +14,8 @@ module.exports = async function handler(request, response) {
     if (!upstream.ok) throw new Error(`Upstream status ${upstream.status}`);
     const orders = await upstream.json();
     response.setHeader('Cache-Control', 'no-store');
-    return response.status(200).json(synchronize(orders));
+    response.setHeader('Content-Type', 'application/json; charset=utf-8');
+    return response.status(200).end(`${JSON.stringify(synchronize(orders), null, 2)}\n`);
   } catch (error) {
     console.error('Order synchronization failed:', error);
     return response.status(502).json({ error: 'Upstream unavailable' });
